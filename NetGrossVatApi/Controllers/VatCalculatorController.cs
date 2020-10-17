@@ -15,32 +15,65 @@ namespace NetGrossVatApi.Controllers
     public class VatCalculatorController : ControllerBase
     {
         [HttpGet]
-        public VatCalculatorResult GetCalculationResult(string vatRate, string amountValue, string amountType)
+        public VatCalculatorResult GetCalculationResult([FromQuery]IDictionary<string, string> input)
         {
-            if(!Enum.TryParse<AmountType>(amountType, out var parsedAmountType))
+            double vatRate;
+            AmountType amountType = default;
+            double? amountValue = null;
+
+            Dictionary<string, AmountType> validAmountFields = new Dictionary<string, AmountType>
             {
-                return new VatCalculatorResult(new ArgumentException($"Invalid amount type: {amountType}"));
+                {"vatAmount", AmountType.Vat },
+                {"netAmount", AmountType.Net},
+                {"grossAmount", AmountType.Gross }
+            };
+
+            VatCalculator vatCalculator = new VatCalculator();
+
+            string listOfValidFields = "";
+            foreach (var validAmountField in validAmountFields)
+            {
+                listOfValidFields += $"{validAmountField.Key} ";
             }
-            if(string.IsNullOrEmpty(amountValue))
+            if (!input.ContainsKey("vatRate"))
             {
-                return new VatCalculatorResult(new ArgumentException($"Missing amount value."));
+                return new VatCalculatorResult("Please provide vatRate.");
             }
-            if(!double.TryParse(amountValue, out var parsedAmountValue))
+            if(input.Count != 2)
             {
-                return new VatCalculatorResult(new ArgumentException($"Invalid amount value: {amountValue}. Must be a number higher than 0."));
+                return new VatCalculatorResult($"Please provide only vatRate and one of the following: {listOfValidFields}");
             }
-            if (string.IsNullOrEmpty(vatRate))
+            if (!double.TryParse(input["vatRate"], out vatRate))
             {
-                return new VatCalculatorResult(new ArgumentException($"Missing vat rate."));
+                return new VatCalculatorResult("vatRate needs to be a numerical.");
             }
-            if (!double.TryParse(vatRate, out var parsedVatRate))
+            if(vatRate <= 0)
             {
-                return new VatCalculatorResult(new ArgumentException($"Invalid vat rate: {amountValue}. Must be a number higher than 0."));
+                return new VatCalculatorResult("vatRate needs to be higher than 0.");
+            }
+            foreach (var validField in validAmountFields)
+            {
+                if(input.ContainsKey(validField.Key))
+                {
+                    if(!double.TryParse(input[validField.Key], out double parsedAmountValue))
+                    {
+                        return new VatCalculatorResult("Amount needs to be a numerical.");
+                    }
+                    amountValue = parsedAmountValue;
+                    if(amountValue <= 0)
+                    {
+                        return new VatCalculatorResult("Amount needs to be higher than 0.");
+                    }
+                    amountType = validField.Value;
+                    break;
+                }
+            }
+            if(!amountValue.HasValue)
+            {
+                return new VatCalculatorResult($"Please provide only vatRate and one of the following: {listOfValidFields}.");
             }
 
-            var vatCalculator = new VatCalculator();
-
-            return vatCalculator.Calculate(parsedAmountType, parsedAmountValue, parsedVatRate);
+            return vatCalculator.Calculate(amountType, amountValue.Value, vatRate);
         }
     }
 }

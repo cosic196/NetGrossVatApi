@@ -1,27 +1,35 @@
-﻿using System;
-
-namespace NetGrossVatApi.DataModels
+﻿namespace NetGrossVatApi.DataModels
 {
     public class VatCalculatorResult
     {
         public bool Succeeded { get; set; }
-        public double NetValue { get; set; }
-        public double GrossValue { get; set; }
-        public double VatValue { get; set; }
-        public Exception Error { get; set; }
+        public Result Result { get; set; }
+        public string Error { get; set; }
 
         public VatCalculatorResult(double netValue, double grossValue, double vatValue)
         {
             Succeeded = true;
-            NetValue = netValue;
-            GrossValue = grossValue;
-            VatValue = vatValue;
+            Result = new Result(netValue, grossValue, vatValue);
+            
         }
 
-        public VatCalculatorResult(Exception error)
+        public VatCalculatorResult(string error)
         {
             Succeeded = false;
             Error = error;
         }
+    }
+
+    public class Result
+    {
+        public Result(double netValue, double grossValue, double vatValue)
+        {
+            NetValue = netValue;
+            GrossValue = grossValue;
+            VatValue = vatValue;
+        }
+        public double NetValue { get; set; }
+        public double GrossValue { get; set; }
+        public double VatValue { get; set; }
     }
 }
