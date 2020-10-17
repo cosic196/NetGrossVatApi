@@ -1,45 +1,44 @@
-﻿using NetGrossVatApi.DataModels;
-using System;
+﻿using NetGrossVatApi.Core;
+using NetGrossVatApi.Core.DataModels;
 
 namespace NetGrossVatApi.Services
 {
-    public class VatCalculator
+    public class VatCalculator : IVatCalculator
     {
-        public VatCalculatorResult Calculate(AmountType amountType, double amountValue, double vatRate)
+        public VatCalculatorResult Calculate(VatCalculatorInput input)
         {
-            switch(amountType)
+            switch(input.AmountType)
             {
                 case AmountType.Vat:
-                    return CalculateWithVat(amountValue, vatRate);
+                    return CalculateWithVat(input.AmountValue, input.VatRate);
                 case AmountType.Gross:
-                    return CalculateWithGross(amountValue, vatRate);
+                    return CalculateWithGross(input.AmountValue, input.VatRate);
                 case AmountType.Net:
-                    return CalculateWithNet(amountValue, vatRate);
+                    return CalculateWithNet(input.AmountValue, input.VatRate);
                 default:
                     return null;
             }
         }
 
-        private VatCalculatorResult CalculateWithNet(double amountValue, double vatRate)
+        private VatCalculatorResult CalculateWithNet(decimal netValue, decimal vatRate)
         {
-            throw new NotImplementedException();
+            decimal vatValue = netValue * vatRate;
+            decimal grossValue = netValue + vatValue;
+            return new VatCalculatorResult(netValue, grossValue, vatValue);
         }
 
-        private VatCalculatorResult CalculateWithGross(double amountValue, double vatRate)
+        private VatCalculatorResult CalculateWithGross(decimal grossValue, decimal vatRate)
         {
-            throw new NotImplementedException();
+            decimal netValue = grossValue / (1 + vatRate);
+            decimal vatValue = netValue * vatRate;
+            return new VatCalculatorResult(netValue, grossValue, vatValue);
         }
 
-        private VatCalculatorResult CalculateWithVat(double amountValue, double vatRate)
+        private VatCalculatorResult CalculateWithVat(decimal vatValue, decimal vatRate)
         {
-            throw new NotImplementedException();
+            decimal netValue = vatValue / vatRate;
+            decimal grossValue = netValue + vatValue;
+            return new VatCalculatorResult(netValue, grossValue, vatValue);
         }
-    }
-
-    public enum AmountType
-    {
-        Vat,
-        Net,
-        Gross
     }
 }

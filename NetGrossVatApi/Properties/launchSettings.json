@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/vatcalculator?VatRate=1&NetValue=10&GrossValue=10&VatValue=10",
+      "launchUrl": "api/vatcalculator?vatRate=0.13&netValue=5",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "NetGrossVatApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "vatcalculator?vatRate=1&netValue=10",
+      "launchUrl": "api/vatcalculator?vatRate=0.13&netValue=5",
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

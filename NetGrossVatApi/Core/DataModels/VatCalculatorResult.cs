@@ -1,4 +1,4 @@
-﻿namespace NetGrossVatApi.DataModels
+﻿namespace NetGrossVatApi.Core.DataModels
 {
     public class VatCalculatorResult
     {
@@ -6,7 +6,7 @@
         public Result Result { get; set; }
         public string Error { get; set; }
 
-        public VatCalculatorResult(double netValue, double grossValue, double vatValue)
+        public VatCalculatorResult(decimal netValue, decimal grossValue, decimal vatValue)
         {
             Succeeded = true;
             Result = new Result(netValue, grossValue, vatValue);
@@ -22,14 +22,14 @@
 
     public class Result
     {
-        public Result(double netValue, double grossValue, double vatValue)
+        public Result(decimal netValue, decimal grossValue, decimal vatValue)
         {
             NetValue = netValue;
             GrossValue = grossValue;
             VatValue = vatValue;
         }
-        public double NetValue { get; set; }
-        public double GrossValue { get; set; }
-        public double VatValue { get; set; }
+        public decimal NetValue { get; set; }
+        public decimal GrossValue { get; set; }
+        public decimal VatValue { get; set; }
     }
 }

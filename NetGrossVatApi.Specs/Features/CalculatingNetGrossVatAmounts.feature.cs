@@ -129,12 +129,9 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("a valid Austrian VAT rate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.And("a valid amount type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 11
  testRunner.When("the API is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 11
  testRunner.Then("the other two missing amounts are calculated and returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -151,7 +148,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "net_gross_vat_calculation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculating Net, Gross and Vat amounts based on missing amount value", null, tagsOfScenario, argumentsOfScenario);
-#line 15
+#line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -171,17 +168,15 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
+#line 15
  testRunner.Given("a valid Austrian VAT rate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 17
- testRunner.And("a valid amount type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 18
+#line 16
  testRunner.When("the API is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 19
- testRunner.Then("the API returns an invalid response with an ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
+ testRunner.Then("the API returns a response with \'Please provide only vatRate and one of the follo" +
+                        "wing: vatAmount netAmount grossAmount \' as the error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -197,7 +192,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "net_gross_vat_calculation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculating Net, Gross and Vat amounts based on missing Vat rate", null, tagsOfScenario, argumentsOfScenario);
-#line 22
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -217,33 +212,30 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 23
+#line 21
  testRunner.Given("one of the net, gross or VAT amounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 24
- testRunner.And("a valid amount type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 25
+#line 22
  testRunner.When("the API is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 26
- testRunner.Then("the API returns an invalid response with an ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 23
+ testRunner.Then("the API returns a response with \'Please provide vatRate.\' as the error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Calculating Net, Gross and Vat amounts based on invalid amount type")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Calculating Net, Gross and Vat amounts based on more than one amount type")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalculatingNetGrossVatAmounts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("net_gross_vat_calculation")]
-        public virtual void CalculatingNetGrossAndVatAmountsBasedOnInvalidAmountType()
+        public virtual void CalculatingNetGrossAndVatAmountsBasedOnMoreThanOneAmountType()
         {
             string[] tagsOfScenario = new string[] {
                     "net_gross_vat_calculation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculating Net, Gross and Vat amounts based on invalid amount type", null, tagsOfScenario, argumentsOfScenario);
-#line 29
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculating Net, Gross and Vat amounts based on more than one amount type", null, tagsOfScenario, argumentsOfScenario);
+#line 26
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -263,33 +255,34 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 30
+#line 27
  testRunner.Given("one of the net, gross or VAT amounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 31
+#line 28
  testRunner.And("a valid Austrian VAT rate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 32
- testRunner.When("the API is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 29
+ testRunner.When("the API is called with more than one amount type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 33
- testRunner.Then("the API returns an invalid response with an ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 30
+ testRunner.Then("the API returns a response with \'Please provide only vatRate and one of the follo" +
+                        "wing: vatAmount netAmount grossAmount \' as the error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Calculating Net, Gross and Vat amounts based on invalid amount value")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Calculating Net, Gross and Vat amounts based on negative amount values")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalculatingNetGrossVatAmounts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("net_gross_vat_calculation")]
-        public virtual void CalculatingNetGrossAndVatAmountsBasedOnInvalidAmountValue()
+        public virtual void CalculatingNetGrossAndVatAmountsBasedOnNegativeAmountValues()
         {
             string[] tagsOfScenario = new string[] {
                     "net_gross_vat_calculation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculating Net, Gross and Vat amounts based on invalid amount value", null, tagsOfScenario, argumentsOfScenario);
-#line 36
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculating Net, Gross and Vat amounts based on negative amount values", null, tagsOfScenario, argumentsOfScenario);
+#line 33
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -309,36 +302,34 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 37
+#line 34
  testRunner.Given("an invalid amount value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 38
+#line 35
  testRunner.And("a valid Austrian VAT rate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 39
- testRunner.And("a valid amount type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 40
+#line 36
  testRunner.When("the API is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 41
- testRunner.Then("the API returns an invalid response with an ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 37
+ testRunner.Then("the API returns a response with \'Amount needs to be higher than 0.\' as the error " +
+                        "message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Calculating Net, Gross and Vat amounts based on invalid Vat rate")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Calculating Net, Gross and Vat amounts based on negative Vat rate")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CalculatingNetGrossVatAmounts")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("net_gross_vat_calculation")]
-        public virtual void CalculatingNetGrossAndVatAmountsBasedOnInvalidVatRate()
+        public virtual void CalculatingNetGrossAndVatAmountsBasedOnNegativeVatRate()
         {
             string[] tagsOfScenario = new string[] {
                     "net_gross_vat_calculation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculating Net, Gross and Vat amounts based on invalid Vat rate", null, tagsOfScenario, argumentsOfScenario);
-#line 44
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Calculating Net, Gross and Vat amounts based on negative Vat rate", null, tagsOfScenario, argumentsOfScenario);
+#line 40
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -358,20 +349,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 45
+#line 41
  testRunner.Given("one of the net, gross or VAT amounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 46
+#line 42
  testRunner.And("an invalid Austrian VAT rate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 47
- testRunner.And("a valid amount type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 48
+#line 43
  testRunner.When("the API is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 49
- testRunner.Then("the API returns an invalid response with an ArgumentException", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 44
+ testRunner.Then("the API returns a response with \'vatRate needs to be higher than 0.\' as the error" +
+                        " message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
