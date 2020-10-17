@@ -1,4 +1,6 @@
-﻿using NetGrossVatApi.Controllers;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NetGrossVatApi.Controllers;
+using NetGrossVatApi.DataModels;
 using TechTalk.SpecFlow;
 
 namespace NetGrossVatApi.Specs.Specs
@@ -59,7 +61,13 @@ namespace NetGrossVatApi.Specs.Specs
         [Then(@"the other two missing amounts are calculated and returned")]
         public void ThenTheOtherTwoMissingAmountsAreCalculatedAndReturned()
         {
-            ScenarioContext.Current.Pending();
+            var vatResult = _scenarioContext.Get<VatCalculatorResult>("vatResult");
+            var netResult = _scenarioContext.Get<VatCalculatorResult>("netResult");
+            var grossResult = _scenarioContext.Get<VatCalculatorResult>("grossResult");
+
+            Assert.IsTrue(vatResult.Succeeded);
+            Assert.IsTrue(netResult.Succeeded);
+            Assert.IsTrue(grossResult.Succeeded);
         }
     }
 }
