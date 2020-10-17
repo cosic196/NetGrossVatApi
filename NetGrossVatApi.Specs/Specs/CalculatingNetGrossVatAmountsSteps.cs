@@ -27,18 +27,29 @@ namespace NetGrossVatApi.Specs.Specs
             _scenarioContext.Add("vatRate", "13");
         }
 
+        [Given(@"a valid amount type")]
+        public void GivenAValidAmountType()
+        {
+            _scenarioContext.Add("vatType", "Vat");
+            _scenarioContext.Add("netType", "Net");
+            _scenarioContext.Add("grossType", "Gross");
+        }
+
         [When(@"the API is called")]
         public void WhenTheAPIIsCalled()
         {
-            var vat = _scenarioContext.Get<string>("vat");
-            var net = _scenarioContext.Get<string>("net");
-            var gross = _scenarioContext.Get<string>("gross");
-            var vatRate = _scenarioContext.Get<string>("vatRate");
+            _scenarioContext.TryGetValue<string>("vat", out var vat);
+            _scenarioContext.TryGetValue<string>("net", out var net);
+            _scenarioContext.TryGetValue<string>("gross", out var gross);
+            _scenarioContext.TryGetValue<string>("vatType", out var vatType);
+            _scenarioContext.TryGetValue<string>("netType", out var netType);
+            _scenarioContext.TryGetValue<string>("grossType", out var grossType);
+            _scenarioContext.TryGetValue<string>("vatRate", out var vatRate);
             var vatCalculatorController = new VatCalculatorController();
 
-            var vatResult = vatCalculatorController.GetCalculationResult(vatRate, vat, "Vat");
-            var netResult = vatCalculatorController.GetCalculationResult(vatRate, net, "Net");
-            var grossResult = vatCalculatorController.GetCalculationResult(vatRate, gross, "Gross");
+            var vatResult = vatCalculatorController.GetCalculationResult(vatRate, vat, vatType);
+            var netResult = vatCalculatorController.GetCalculationResult(vatRate, net, netType);
+            var grossResult = vatCalculatorController.GetCalculationResult(vatRate, gross, grossType);
 
             _scenarioContext.Add("vatResult", vatResult);
             _scenarioContext.Add("netResult", netResult);
