@@ -13,7 +13,7 @@
         {
             if (value <= 0 || value >= 1)
             {
-                return Result<VatRate>.ResultFail("Invalid or missing VAT rate. VAT rate must be higher than 0 and lower than 1.");
+                return Result<VatRate>.ResultFail("Invalid VAT rate. VAT rate must be higher than 0 and lower than 1.");
             }
             return Result<VatRate>.Ok(new VatRate(value));
         }

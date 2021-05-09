@@ -55,7 +55,7 @@ namespace Logic.Tests.AppServices
 
             Assert.IsTrue(result.IsFailure);
             Assert.AreEqual(1, result.Errors.Count());
-            Assert.AreEqual("Invalid or missing VAT rate. VAT rate must be higher than 0 and lower than 1.", result.Errors.First());
+            Assert.AreEqual("Invalid VAT rate. VAT rate must be higher than 0 and lower than 1.", result.Errors.First());
         }
     }
 }

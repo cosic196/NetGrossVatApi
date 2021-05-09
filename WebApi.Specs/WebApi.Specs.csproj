@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.14" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.4.211" />
 
@@ -28,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Steps\" />
+    <ProjectReference Include="..\WebApi\WebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

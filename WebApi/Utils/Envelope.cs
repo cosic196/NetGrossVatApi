@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace WebApi.Utils
@@ -14,6 +15,12 @@ namespace WebApi.Utils
             Result = result;
             Errors = errors;
             TimeGenerated = DateTime.UtcNow;
+        }
+
+        [JsonConstructor]
+        public Envelope(T result, IEnumerable<string> errors, DateTime timeGenerated) : this(result, errors)
+        {
+            TimeGenerated = timeGenerated;
         }
     }
 
