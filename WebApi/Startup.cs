@@ -1,12 +1,12 @@
+using Logic.AppServices;
+using Logic.Dtos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NetGrossVatApi.Core;
-using NetGrossVatApi.Services;
 
-namespace NetGrossVatApi
+namespace WebApi
 {
     public class Startup
     {
@@ -20,9 +20,8 @@ namespace NetGrossVatApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IVatCalculator, VatCalculator>();
-            services.AddScoped<IVatCalculatorInputParser, VatCalculatorInputParser>();
             services.AddControllers();
+            services.AddSingleton<IQueryHandler<GetPurchaseInfoQuery, PurchaseInfoDto>, GetPurchaseInfoQueryHandler>();
         }
 
 
@@ -32,8 +31,6 @@ namespace NetGrossVatApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
