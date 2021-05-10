@@ -12,12 +12,12 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/vatcalculator?vatRate=0.13&netAmount=5"
+      "launchUrl": ""
     },
     "NetGrossVatApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/vatcalculator?vatRate=0.13&netAmount=5",
+      "launchUrl": "",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

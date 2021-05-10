@@ -8,6 +8,7 @@ using WebApi.Utils;
 
 namespace WebApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class VatCalculatorController : ControllerBase
@@ -19,19 +20,25 @@ namespace WebApi.Controllers
             _getPurchaseInfoQueryHandler = getPurchaseInfoQueryHandler;
         }
 
+        /// <summary>
+        /// Calculate gross, net and vat amounts of a purchase based on one of the amounts and a vat rate.
+        /// </summary>
+        [ProducesResponseType(typeof(Envelope<PurchaseInfoDto>), 200)]
+        [ProducesResponseType(typeof(Envelope<object>), 422)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), 400)]
         [HttpGet]
-        public IActionResult GetPurchaseDetails([FromQuery] AmountModel amount, [FromQuery, Required] decimal? vatRate)
+        public IActionResult GetPurchaseDetails([FromQuery] Amount amount, [FromQuery, Required] decimal? vatRate)
         {
             var query = CreateFromInput(amount, vatRate.Value);
             var result = _getPurchaseInfoQueryHandler.Handle(query);
             
             if(result.IsFailure)
-                return BadRequest(Envelope.Error(result.Errors));
+                return UnprocessableEntity(Envelope.Error(result.Errors));
 
             return Ok(Envelope.Ok(result.Value));
         }
 
-        private GetPurchaseInfoQuery CreateFromInput(AmountModel amount, decimal vatRate)
+        private GetPurchaseInfoQuery CreateFromInput(Amount amount, decimal vatRate)
         {
             if(amount.GrossAmount.HasValue)
             {

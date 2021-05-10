@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:WebApi.Controllers.VatCalculatorController.GetPurchaseDetails(WebApi.Models.Amount,System.Nullable{System.Decimal})">
+            <summary>
+            Calculate gross, net and vat amounts of a purchase based on one of the amounts and a vat rate.
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.Amount.GrossAmount">
+            <summary>
+            Required if NetAmount and VatAmount are not set
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.Amount.NetAmount">
+            <summary>
+            Required if GrossAmount and VatAmount are not set
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.Amount.VatAmount">
+            <summary>
+            Required if NetAmount and GrossAmount are not set
+            </summary>
+        </member>
+    </members>
+</doc>
