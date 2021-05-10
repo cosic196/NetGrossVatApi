@@ -21,7 +21,7 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<IQueryHandler<GetPurchaseInfoQuery, PurchaseInfoDto>, GetPurchaseInfoQueryHandler>();
+            services.AddTransient<IQueryHandler<GetPurchaseInfoQuery, PurchaseInfoDto>, GetPurchaseInfoQueryHandler>();
         }
 
 
