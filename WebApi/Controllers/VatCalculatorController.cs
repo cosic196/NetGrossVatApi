@@ -26,7 +26,7 @@ namespace WebApi.Controllers
         /// </summary>
         [ProducesResponseType(typeof(Envelope<PurchaseInfoDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Envelope<object>), StatusCodes.Status422UnprocessableEntity)]
-        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpGet]
         public IActionResult GetPurchaseDetails([FromQuery] Amount amount, [FromQuery, Required] decimal? vatRate)
         {
