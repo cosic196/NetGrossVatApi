@@ -1,5 +1,6 @@
 ﻿using Logic.AppServices;
 using Logic.Dtos;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -23,9 +24,9 @@ namespace WebApi.Controllers
         /// <summary>
         /// Calculate gross, net and vat amounts of a purchase based on one of the amounts and a vat rate.
         /// </summary>
-        [ProducesResponseType(typeof(Envelope<PurchaseInfoDto>), 200)]
-        [ProducesResponseType(typeof(Envelope<object>), 422)]
-        [ProducesResponseType(typeof(ValidationProblemDetails), 400)]
+        [ProducesResponseType(typeof(Envelope<PurchaseInfoDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Envelope<object>), StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [HttpGet]
         public IActionResult GetPurchaseDetails([FromQuery] Amount amount, [FromQuery, Required] decimal? vatRate)
         {
