@@ -1,4 +1,6 @@
-﻿namespace Logic.Core
+﻿using System;
+
+namespace Logic.Core
 {
     public class MoneyAmount
     {
@@ -15,7 +17,7 @@
             {
                 return Result<MoneyAmount>.ResultFail("Can't use a negative or zero amount for money within purchases.");
             }
-            return Result<MoneyAmount>.Ok(new MoneyAmount(value));
+            return Result<MoneyAmount>.Ok(new MoneyAmount(Math.Round(value, 2)));
         }
     }
 }
