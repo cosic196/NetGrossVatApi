@@ -10,22 +10,12 @@ namespace WebApi.Utils
     {
         private const string _defaultErrorMessage = "Only one of '{0}' required.";
 
-        private readonly object _typeId = new object();
-
         public string[] RequiredProperties { get; private set; }
 
         public OnlyOneOfRequiredAttribute(params string[] requiredProperties)
             : base(_defaultErrorMessage)
         {
             RequiredProperties = requiredProperties;
-        }
-
-        public override object TypeId
-        {
-            get
-            {
-                return _typeId;
-            }
         }
 
         public override string FormatErrorMessage(string name)

@@ -16,7 +16,7 @@
         </member>
         <member name="P:WebApi.Models.Amount.NetAmount">
             <summary>
-            Required if <span style="color:red">**grossAmount**</span> and **vatAmount** are not set
+            Required if **grossAmount** and **vatAmount** are not set
             </summary>
         </member>
         <member name="P:WebApi.Models.Amount.VatAmount">
