@@ -1,4 +1,5 @@
-﻿using WebApi.Utils;
+﻿using Microsoft.AspNetCore.Mvc;
+using WebApi.Utils;
 
 namespace WebApi.Models
 {
@@ -6,16 +7,19 @@ namespace WebApi.Models
     public class Amount
     {
         /// <summary>
-        /// Required if NetAmount and VatAmount are not set
+        /// Required if **netAmount** and **vatAmount** are not set
         /// </summary>
+        [FromQuery(Name = "grossAmount")]
         public decimal? GrossAmount { get; set; }
         /// <summary>
-        /// Required if GrossAmount and VatAmount are not set
+        /// Required if **grossAmount** and **vatAmount** are not set
         /// </summary>
+        [FromQuery(Name = "netAmount")]
         public decimal? NetAmount { get; set; }
         /// <summary>
-        /// Required if NetAmount and GrossAmount are not set
+        /// Required if **netAmount** and **grossAmount** are not set
         /// </summary>
+        [FromQuery(Name = "vatAmount")]
         public decimal? VatAmount { get; set; }
     }
 }
