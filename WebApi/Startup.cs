@@ -23,6 +23,10 @@ namespace WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(setupAction =>
+            {
+                setupAction.ReturnHttpNotAcceptable = true;
+            });
             services.AddControllers();
             services.AddTransient<IQueryHandler<GetPurchaseInfoQuery, PurchaseInfoDto>, GetPurchaseInfoQueryHandler>();
             services.AddSwaggerGen(setupAction =>

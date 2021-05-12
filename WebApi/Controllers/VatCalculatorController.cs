@@ -24,11 +24,11 @@ namespace WebApi.Controllers
         /// <summary>
         /// Calculate gross, net and vat amounts of a purchase based on one of the amounts and a vat rate.
         /// </summary>
-        [ProducesResponseType(typeof(Envelope<PurchaseInfoDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(Envelope<object>), StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Envelope<PurchaseInfoDto>), StatusCodes.Status422UnprocessableEntity)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpGet]
-        public IActionResult GetPurchaseDetails([FromQuery] Amount amount, [FromQuery, Required] decimal? vatRate)
+        public ActionResult<Envelope<PurchaseInfoDto>> GetPurchaseDetails([FromQuery] Amount amount, [FromQuery, Required] decimal? vatRate)
         {
             var query = CreateFromInput(amount, vatRate.Value);
             var result = _getPurchaseInfoQueryHandler.Handle(query);
