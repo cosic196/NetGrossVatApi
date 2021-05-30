@@ -1,4 +1,4 @@
-# NetGrossVatAPINetGrossVatAPI
+# NetGrossVatAPI
 
 This is a simple API which calculates net, gross and vat amounts of a purchase based on two input parameters:
 1. One of: netAmount, grossAmount, vatAmount
