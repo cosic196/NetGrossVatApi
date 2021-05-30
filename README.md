@@ -55,5 +55,7 @@ To get a more detailed view on the use cases and return values, look at the Open
 Here are some examples of valid requests (all of the requests are GET requests):
 
 http://localhost:5000/api/vatcalculator?grossAmount=12&vatRate=0.1
+
 http://localhost:5000/api/vatcalculator?netAmount=8&vatRate=0.2
+
 http://localhost:5000/api/vatcalculator?vatAmount=10&vatRate=0.5
